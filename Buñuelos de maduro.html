@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADURO LAB - Donde el Sabor es una Ciencia Avanzada</title>
+    <style>
+        /* ================================================= */
+        /* === CSS: ESTILOS BASE Y NEÓN AVANZADO === */
+        /* ================================================= */
+
+        :root {
+            --color-fondo: #000000;
+            --color-neon-naranja: #FF6600; /* Naranja más vivo */
+            --color-neon-amarillo: #FFFF66; /* Amarillo más brillante */
+            --color-texto-base: #C0C0C0; /* Gris claro sutil */
+            --color-resaltado: #222222;
+            --anim-speed: 0.2s;
+        }
+
+        body {
+            font-family: 'Consolas', monospace; /* Fuente tecnológica/limpia */
+            background-color: var(--color-fondo);
+            color: var(--color-texto-base);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Header y Navegación (Sticky y Estilizado) --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-neon-naranja);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        nav a {
+            color: var(--color-texto-base);
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: var(--anim-speed) ease-in-out;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            color: var(--color-neon-amarillo);
+            text-shadow: 0 0 5px var(--color-neon-amarillo);
+            background-color: var(--color-resaltado);
+            border-radius: 3px;
+        }
+
+        /* --- Estilos de Contenedores y Secciones --- */
+        .seccion {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 40px 20px;
+            border-left: 5px solid var(--color-neon-naranja);
+            text-align: left;
+            opacity: 0; /* Para animación de aparición */
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .seccion.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Títulos Neón y Flicker --- */
+        .neon-title {
+            font-size: 3.5em;
+            color: var(--color-neon-naranja);
+            text-shadow: 0 0 10px var(--color-neon-naranja), 0 0 20px rgba(255, 102, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .neon-subtitle {
+            font-size: 2em;
+            color: var(--color-neon-amarillo);
+            border-bottom: 2px solid var(--color-neon-amarillo);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Animación de Flicker (Parpadeo) */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.8; }
+        }
+
+        .flicker {
+            animation: flicker 2s infinite alternate;
+        }
+
+        /* --- Estilos de Productos (Listado tipo 'Tarjeta' sin caja) --- */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .producto-item {
+            background-color: var(--color-resaltado);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid var(--color-neon-naranja);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .producto-item:hover {
+            background-color: #333333;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--color-neon-amarillo);
+        }
+
+        .nombre-producto {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--color-neon-amarillo);
+            margin-bottom: 5px;
+        }
+
+        .precio-producto {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--color-neon-naranja);
+            margin-top: 10px;
+        }
+
+        .detalle-producto {
+            font-size: 0.9em;
+            color: var(--color-texto-base);
+            height: 40px; /* Altura fija para alineación */
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        /* --- Estilos de Combo y Precios Fijos --- */
+        .combo-box {
+            background-color: var(--color-neon-naranja);
+            color: var(--color-fondo);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 0 30px var(--color-neon-naranja);
+            transform: scale(0.98);
+            transition: transform 0.4s ease;
+        }
+
+        .combo-box:hover {
+            transform: scale(1.01);
+        }
+
+        .combo-title {
+            font-size: 2.5em;
+            font-weight: 900;
+            text-shadow: 1px 1px 2px #000;
+            margin-bottom: 10px;
+        }
+
+        .combo-detalle {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #FFFFF0;
+        }
+
+        /* --- Footer y Contacto --- */
+        footer {
+            margin-top: 100px;
+            padding: 30px 0;
+            background-color: #111111;
+            border-top: 1px solid var(--color-neon-amarillo);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#inicio">INICIO</a>
+            <a href="#menu">MENÚ LAB</a>
+            <a href="#combos">COMBOS</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="seccion visible" style="text-align: center; border: none; box-shadow: none;">
+        <h1 class="neon-title flicker">MADURO LAB</h1>
+        <p style="font-size: 1.5em; color: var(--color-neon-amarillo);">
+            <span id="typing-text"></span><span id="cursor">_</span>
+        </p>
+        <p style="font-size: 1.2em; margin-top: 40px;">Tu dosis diaria de felicidad. Redefiniendo el buñuelo de maduro con la química del sabor.</p>
+    </section>
+
+    <section id="menu" class="seccion">
+        <h2 class="neon-subtitle">LABORATORIO DE EXPERIMENTOS</h2>
+
+        <div class="productos-grid">
+
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA CLÁSICA</p>
+                <p class="detalle-producto">El buñuelo de maduro tradicional. Dulzura y textura perfectas.</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+            
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA QUESO</p>
+                <p class="detalle-producto">Mezcla de maduro con centro de queso fresco derretido. El contraste salado/dulce.</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA POLLO</p>
+                <p class="detalle-producto">Relleno de pollo desmechado, especias y un toque de crema. ¡Una bomba de sabor!</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA CARNE</p>
+                <p class="detalle-producto">Carne molida sazonada a la perfección en la envoltura de maduro más dulce.</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA MIXTA</p>
+                <p class="detalle-producto">Una combinación de queso y carne para cuando no puedes decidirte por uno solo.</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+
+            <div class="producto-item">
+                <p class="nombre-producto">FÓRMULA FUNGI (CHAMPIÑONES)</p>
+                <p class="detalle-producto">Champiñones salteados con hierbas en una base cremosa. Nuestra opción más gourmet.</p>
+                <p class="precio-producto">$5.000</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="combos" class="seccion">
+        <h2 class="neon-subtitle">LA FÓRMULA COMPLETA</h2>
+        
+        <div class="combo-box">
+            <p class="combo-title">¡COMBO ENERGÉTICO!</p>
+            <p class="combo-detalle">Cualquier Buñuelo ($5.000) + Gaseosa Fría.</p>
+            <h1 style="font-size: 3.5em; color: var(--color-fondo); margin: 10px 0;">$6.000</h1>
+            <p class="combo-detalle" style="color: var(--color-fondo); font-weight: 500;">**¡Ahorra y disfruta la experiencia completa!**</p>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 1.1em; text-align: center; color: var(--color-neon-amarillo);">
+            *Nota del Químico: Todos nuestros buñuelos tienen un precio base de $5.000.
+        </p>
+    </section>
+
+    <section id="contacto" class="seccion">
+        <h2 class="neon-subtitle">CONEXIÓN DE DATOS</h2>
+        <p><strong>Ubicación:</strong> [Agregar tu Dirección Aquí]</p>
+        <p><strong>Horario de Apertura:</strong> [Lun-Vie: 4:00 PM - 8:00 PM] (o el que uses)</p>
+        <p><strong>Llamada a la Acción:</strong> ¡Pide tu dosis de sabor ahora! Envíanos un mensaje a [Tu Teléfono/WhatsApp]</p>
+    </section>
+
+    <footer>
+        <p class="neon-text" style="font-size: 1.2em;">MADURO LAB: Donde el sabor es una ciencia.</p>
+        <p>&copy; 2025. Todos los derechos reservados. | Diseñado en [Tu ciudad].</p>
+    </footer>
+
+    <script>
+        // --- 1. Animación de Escritura (Typing Effect) ---
+        const textToType = "La química del dulce.";
+        let i = 0;
+        const speed = 100; // Velocidad en milisegundos
+        
+        function typeWriter() {
+            if (i < textToType.length) {
+                document.getElementById("typing-text").innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Ocultar el cursor al terminar de escribir
+                document.getElementById("cursor").style.display = 'none';
+            }
+        }
+        
+        // Ejecutar la animación después de que la página cargue
+        window.onload = function() {
+            typeWriter();
+            checkVisibility(); // Ejecutar la visibilidad al inicio
+        };
+
+
+        // --- 2. Animación de Scroll para Secciones ---
+        // Hace que las secciones aparezcan suavemente al hacer scroll
+        const seccionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Dejar de observar una vez visible
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% de la sección debe ser visible
+        });
+
+        document.querySelectorAll('.seccion').forEach(seccion => {
+            if (seccion.id !== 'inicio') { // Excluir la sección de inicio
+                seccionObserver.observe(seccion);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
